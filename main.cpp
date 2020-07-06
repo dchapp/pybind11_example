@@ -14,7 +14,7 @@ struct PYBIND11_EXPORT my_struct {
   }
 };
 
-struct wrapper_struct {
+struct PYBIND11_EXPORT wrapper_struct {
   std::shared_ptr<my_struct> my_struct_ptr;
 };
 
