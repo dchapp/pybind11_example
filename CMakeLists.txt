@@ -12,10 +12,13 @@ find_package(Python COMPONENTS Interpreter Development)
 set(PYBIND11_PYTHON_VERSION 3.6.9)
 find_package(pybind11 REQUIRED)
 
-# Prevent linker errors caused by the dependencies of PyBind's interface library target 
+# Prevent linker errors caused by the dependencies of PyBind's interface library target
 set(LIBS "${Python_LIBRARIES}")
 list(REMOVE_ITEM LIBS "optimized")
 list(REMOVE_ITEM LIBS "debug")
+
+pybind11_add_module(my_module my_module.cpp)
+target_link_libraries(my_module PRIVATE ${CONAN_LIBS})
 
 add_executable(main)
 target_sources(main PUBLIC main.cpp)
